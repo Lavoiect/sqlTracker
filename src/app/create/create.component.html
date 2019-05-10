@@ -1,0 +1,16 @@
+<form #f = "ngForm">
+    <label>Name</label>
+    <input type="text" name="leadDeveloper" ngModel>
+    <br>
+    <label>Lead Developer</label>
+    <input type="text" name="projectName" ngModel>
+    <br>
+    <label>Project Scope:</label>
+    <input type="text" name="projectScope" ngModel>
+    <br>
+    <label>Due Date:</label>
+    <input type="text" name="dueDate" ngModel>
+    <br>
+    <input type="button"  class="btn btn-secondary" (click)="createProject(f)" value="Create">
+
+  </form>

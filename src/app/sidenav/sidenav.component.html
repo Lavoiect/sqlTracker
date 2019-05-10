@@ -1,0 +1,19 @@
+<header>
+  Project Tracker
+</header>
+<div class="row">
+  <div class="col-2">
+      <nav>
+      <ul>
+        <li><a [routerLink]="['/home']" routerLinkActive="router-link-active" >Home</a></li>
+        <li><a [routerLink]="['/projects']" routerLinkActive="router-link-active" >Projects</a></li>
+        <li><a [routerLink]="['/create']" routerLinkActive="router-link-active" >Create</a></li>
+      </ul>
+    </nav>
+  </div>
+  <div class="col-10">
+<router-outlet></router-outlet>
+    </div>
+</div>
+
+

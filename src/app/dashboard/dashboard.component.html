@@ -1,0 +1,49 @@
+<h1>Project Manager</h1>
+<button (click)="toggleCards()" [ngClass]="{'active': showCardView == true}">Cards</button>
+<button (click)="toggleTable()" [ngClass]="{'active': showTableView == true}">Table</button>
+<input type="text" placeholder="Filter by:" [(ngModel)]="filterTerm">
+filtered by: {{ _filterTerm }}
+<div>
+
+  <div class="showTable" *ngIf="showTableView">
+    <table class="table table-bordered">
+      <thead class=thead-light>
+      <tr>
+        <th scope="col">Lead Developer</th>
+        <th scope="col">Project Name</th>
+        <th scope="col">Project Scope</th>
+        <th scope="col">Actions</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let project of filteredProjects">
+        <th scope="row">{{ project.leadDeveloper }}</th>
+        <td>{{ project.projectName}}</td>
+        <td>{{ project.projectScope }}</td>
+        <td><button  class="btn btn-danger" (click)="deleteProject(project.id)">Delete</button>
+          <button  class="btn btn-primary" (click)="detailProject()" [routerLink]="['/create']" >View</button>
+        </td>
+      </tr>
+    </tbody>
+    </table>
+
+  </div>
+
+<div class="cardPanel" *ngIf="showCardView">
+  <div class="row">
+    <div class="col-4" *ngFor="let project of filteredProjects">
+        <div class="card" >
+            <div class="card-block">
+              {{ project.leadDeveloper }}
+              {{ project.projectName}}
+              {{ project.projectScope }}
+              <button  class="btn btn-danger" (click)="deleteProject(project.id)">Delete</button>
+          <button  class="btn btn-primary" (click)="detailProject()" [routerLink]="['/create']" >View</button>
+            </div>
+          </div>
+    </div>
+  </div>
+</div>
+
+
