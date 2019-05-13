@@ -22,7 +22,7 @@ filtered by: {{ _filterTerm }}
         <td>{{ project.projectName}}</td>
         <td>{{ project.projectScope }}</td>
         <td><button  class="btn btn-danger" (click)="deleteProject(project.id)">Delete</button>
-          <button  class="btn btn-primary" (click)="detailProject()" [routerLink]="['/create']" >View</button>
+          <button  class="btn btn-primary" [routerLink]="['/projects', project.id]" >View</button>
         </td>
       </tr>
     </tbody>

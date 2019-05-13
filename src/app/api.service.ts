@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Project } from '../app/project';
 import { Observable } from 'rxjs';
+import {map} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,9 @@ export class ApiService {
 
   getProjects(): Observable<Project[]> {
     return this.httpClient.get<Project[]>(`${this.PHP_API_SERVER}/projectBackend/api/read.php`);
+  }
+  getProject(id: number): Observable<Project> {
+    return this.httpClient.get<Project>(`${this.PHP_API_SERVER}/projectBackend/api/read.php/?id=${id}`);
   }
 
   deleteProject(id: number) {
