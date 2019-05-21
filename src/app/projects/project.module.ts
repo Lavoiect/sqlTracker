@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { DetailsComponent } from 'src/app/projects/details/details.component';
 import { DashboardComponent } from 'src/app/projects/dashboard/dashboard.component';
 import { CreateComponent } from 'src/app/projects/create/create.component';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 @NgModule({
@@ -14,7 +14,7 @@ import { RouterModule } from '@angular/router';
 
   ],
   imports: [
-    FormsModule,
+    ReactiveFormsModule,
     CommonModule,
     RouterModule
   ]

@@ -9,6 +9,7 @@ import { SidenavComponent } from './sidenav/sidenav.component';
 import { HomeComponent } from './home/home.component';
 import { ProjectModule } from './projects/project.module';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,9 +18,10 @@ import { ProjectModule } from './projects/project.module';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     HttpClientModule,
-    ProjectModule
+    ProjectModule,
+    AppRoutingModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]
