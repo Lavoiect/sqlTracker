@@ -19,7 +19,7 @@ filtered by: {{ _filterTerm }}
     <tbody>
       <tr *ngFor="let project of filteredProjects">
         <th scope="row">{{ project.leadDeveloper }}</th>
-        <td>{{ project.projectName}}</td>
+        <td>{{ project.projectName}} {{ project.dueDate | date:'shortDate' }}</td>
         <td>{{ project.projectScope }}</td>
         <td><button  class="btn btn-danger" (click)="deleteProject(project.id)">Delete</button>
           <button  class="btn btn-primary" [routerLink]="['/projects', project.id]" >View</button>
@@ -39,7 +39,7 @@ filtered by: {{ _filterTerm }}
               {{ project.projectName}}
               {{ project.projectScope }}
               <button  class="btn btn-danger" (click)="deleteProject(project.id)">Delete</button>
-          <button  class="btn btn-primary" (click)="detailProject()" [routerLink]="['/create']" >View</button>
+          <button  class="btn btn-primary"  [routerLink]="['/create']" >View</button>
             </div>
           </div>
     </div>

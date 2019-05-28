@@ -1,15 +1,28 @@
-<form #f = "ngForm">
+<form (ngSubmit)="createProject()" [formGroup]="projectForm">
     <label>Name</label>
-    <input type="text" name="leadDeveloper" ngModel>
+    <input id="leadDeveloper" type="text" formControlName="leadDeveloper">
+    <p *ngIf="projectForm.valid == false && projectForm.dirty == true">This field is required.</p>
     <br>
     <label>Lead Developer</label>
-    <input type="text" name="projectName" ngModel>
+    <input id="projectName" type="text" formControlName="projectName">
     <br>
     <label>Project Scope:</label>
-    <input type="text" name="projectScope" ngModel>
+    <input id="projectScope" type="text" formControlName="projectScope">
     <br>
     <label>Due Date:</label>
-    <input type="text" name="dueDate" ngModel>
     <br>
-    <input type="button"  class="btn btn-secondary" (click)="createProject(f)" value="Create">
+    <div class="input-group">
+      <input formControlName="dueDate" class="form-control" placeholder="yyyy-mm-dd"
+             name="dp"  ngbDatepicker #d="ngbDatepicker">
+      <div class="input-group-append">
+        <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
+      </div>
+    </div>
+    <button type="submit"  class="btn btn-secondary">Save</button>
 </form>
+
+{{projectForm.value.dueDate | date:'short'}}
+<br>Dirty: {{projectForm.dirty}}
+<br>Touched: {{projectForm.touched}}
+<br>Valid: {{projectForm.valid}}
+<br>Value: {{projectForm.value | json}}
