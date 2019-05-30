@@ -1,10 +1,10 @@
 <form (ngSubmit)="createProject()" [formGroup]="projectForm">
-    <label>Name</label>
-    <input id="leadDeveloper" type="text" formControlName="leadDeveloper">
-    <p *ngIf="projectForm.valid == false && projectForm.dirty == true">This field is required.</p>
+    <label>Project Name</label>
+    <input id="projectName" type="text" formControlName="projectName">
+    <span *ngIf="projectForm.valid == false && projectForm.dirty == true" class="warning">This field is required.</span>
     <br>
     <label>Lead Developer</label>
-    <input id="projectName" type="text" formControlName="projectName">
+    <input id="leadDeveloper" type="text" formControlName="leadDeveloper">
     <br>
     <label>Project Scope:</label>
     <input id="projectScope" type="text" formControlName="projectScope">
@@ -21,6 +21,7 @@
     <button type="submit"  class="btn btn-secondary">Save</button>
 </form>
 
+{{projects.dueDate}}
 {{projectForm.value.dueDate | date:'short'}}
 <br>Dirty: {{projectForm.dirty}}
 <br>Touched: {{projectForm.touched}}

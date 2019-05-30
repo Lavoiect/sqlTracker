@@ -9,20 +9,22 @@ filtered by: {{ _filterTerm }}
     <table class="table table-bordered">
       <thead class=thead-light>
       <tr>
-        <th scope="col">Lead Developer</th>
         <th scope="col">Project Name</th>
+        <th scope="col">Lead Developer</th>
         <th scope="col">Project Scope</th>
+        <th scope="col">Due Date</th>
         <th scope="col">Actions</th>
 
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let project of filteredProjects">
-        <th scope="row">{{ project.leadDeveloper }}</th>
-        <td>{{ project.projectName}} {{ project.dueDate | date:'shortDate' }}</td>
+        <th scope="row">{{ project.projectName }}</th>
+        <td>{{ project.leadDeveloper}}</td>
         <td>{{ project.projectScope }}</td>
+        <td>{{ project.dueDate | date:'shortDate' }}</td>
         <td><button  class="btn btn-danger" (click)="deleteProject(project.id)">Delete</button>
-          <button  class="btn btn-primary" [routerLink]="['/projects', project.id]" >View</button>
+          <button  class="btn btn-primary" [routerLink]="['/projects', project.id, 'edit']" >View</button>
         </td>
       </tr>
     </tbody>
@@ -46,4 +48,6 @@ filtered by: {{ _filterTerm }}
   </div>
 </div>
 
-
+<div *ngIf="filteredProjects?.length <= 0">
+  No Projects
+</div>

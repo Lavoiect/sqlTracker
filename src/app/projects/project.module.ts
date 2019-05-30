@@ -10,11 +10,14 @@ import { NgbModule, NgbDateAdapter, NgbDateNativeAdapter } from '@ng-bootstrap/n
 
 
 
+
+
 @NgModule({
   declarations: [
     DetailsComponent,
     DashboardComponent,
     CreateComponent,
+
 
   ],
   imports: [

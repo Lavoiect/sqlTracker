@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ApiService } from '../../api.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import {NgbDateAdapter, NgbDateStruct, NgbDateNativeAdapter} from '@ng-bootstrap/ng-bootstrap';
 
 import { Project } from '../../project';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -11,21 +13,40 @@ import { Project } from '../../project';
   templateUrl: './create.component.html',
   styleUrls: ['./create.component.scss']
 })
-export class CreateComponent implements OnInit {
+export class CreateComponent implements OnInit, OnDestroy {
 
   projectForm: FormGroup;
-  projects = new Project();
 
-  constructor(private apiService: ApiService , private fb: FormBuilder) { }
+  private sub: Subscription;
+  projects:  Project[] = [];
+  constructor(private apiService: ApiService,
+              private route: ActivatedRoute,
+              private router: Router,
+              private fb: FormBuilder) { }
 
   ngOnInit() {
     this.projectForm = this.fb.group({
-      leadDeveloper: ['', [ Validators.required, Validators.minLength(3)]],
-      projectName: '',
+      projectName: [, [Validators.required, Validators.minLength(3)]],
+      leadDeveloper: '',
       projectScope: '',
-      dueDate: '',
+      dueDate: null,
     });
 
+    this.sub = this.route.paramMap.subscribe(
+      params => {
+        const id = +params.get('id');
+        this.apiService.getProject(id).subscribe((projects: Project[]) => {
+          this.projects = projects;
+          console.log(this.projects);
+        });
+      }
+    );
+
+  }
+
+
+  ngOnDestroy(): void {
+    this.sub.unsubscribe();
   }
 
   createProject(form) {
