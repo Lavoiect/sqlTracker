@@ -12,6 +12,7 @@ const routes: Routes = [
   { path: 'create', component: CreateComponent },
   { path: 'projects/:id', component: DetailsComponent },
   { path: 'projects/:id/edit', component: CreateComponent },
+  { path: 'projects/:id/details', component: DetailsComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full'}
 ];
 

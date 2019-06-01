@@ -1,1 +1,4 @@
 <h3>Project Details:</h3>
+{{ project?.id }}
+{{ project?.projectName }}
+<button *ngIf="project" class="btn btn-primary" [routerLink]="['/projects', project.id, 'edit']">edit</button>

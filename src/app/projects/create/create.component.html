@@ -1,4 +1,6 @@
-<form (ngSubmit)="createProject()" [formGroup]="projectForm">
+
+ {{pageTitle}}
+<form (ngSubmit)="saveProject()" [formGroup]="projectForm">
     <label>Project Name</label>
     <input id="projectName" type="text" formControlName="projectName">
     <span *ngIf="projectForm.valid == false && projectForm.dirty == true" class="warning">This field is required.</span>
@@ -9,19 +11,15 @@
     <label>Project Scope:</label>
     <input id="projectScope" type="text" formControlName="projectScope">
     <br>
-    <label>Due Date:</label>
+    <label>Due Date1:</label>
     <br>
     <div class="input-group">
-      <input formControlName="dueDate" class="form-control" placeholder="yyyy-mm-dd"
-             name="dp"  ngbDatepicker #d="ngbDatepicker">
-      <div class="input-group-append">
-        <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
-      </div>
+      <input formControlName="dueDate" type="date"  placeholder="yyyy-mm-dd">
     </div>
     <button type="submit"  class="btn btn-secondary">Save</button>
 </form>
 
-{{projects.dueDate}}
+
 {{projectForm.value.dueDate | date:'short'}}
 <br>Dirty: {{projectForm.dirty}}
 <br>Touched: {{projectForm.touched}}

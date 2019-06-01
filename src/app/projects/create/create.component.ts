@@ -14,45 +14,105 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./create.component.scss']
 })
 export class CreateComponent implements OnInit, OnDestroy {
-
+  pageTitle = 'Product Edit';
+  errorMessage: string;
   projectForm: FormGroup;
 
+  project:  Project;
   private sub: Subscription;
-  projects:  Project[] = [];
-  constructor(private apiService: ApiService,
+
+  constructor(private fb: FormBuilder,
               private route: ActivatedRoute,
               private router: Router,
-              private fb: FormBuilder) { }
+              private apiService: ApiService
+              ) { }
 
   ngOnInit() {
     this.projectForm = this.fb.group({
       projectName: [, [Validators.required, Validators.minLength(3)]],
       leadDeveloper: '',
       projectScope: '',
-      dueDate: null,
+      dueDate: '',
     });
 
+    // Read the project Id from the route parameter
     this.sub = this.route.paramMap.subscribe(
       params => {
         const id = +params.get('id');
-        this.apiService.getProject(id).subscribe((projects: Project[]) => {
-          this.projects = projects;
-          console.log(this.projects);
-        });
+        this.getProject(id);
       }
     );
 
   }
 
-
   ngOnDestroy(): void {
     this.sub.unsubscribe();
   }
 
-  createProject(form) {
-    this.apiService.createProject(this.projectForm.value).subscribe((project: Project) => {
+
+
+
+  getProject(id: number): void {
+    this.apiService.getProject(id)
+      .subscribe(
+        (project: Project) => this.displayProject(project),
+        (error: any) => this.errorMessage = <any>error
+      );
+  }
+
+  displayProject(project: Project): void {
+    if (this.projectForm) {
       this.projectForm.reset();
+    }
+    this.project = project;
+
+    if (this.project.id === 0) {
+      this.pageTitle = 'Add Project';
+    } else {
+      this.pageTitle = `Edit Project: ${this.project.projectName}`;
+    }
+
+    // Update the data on the form
+    this.projectForm.patchValue({
+      projectName: this.project.projectName,
+      leadDeveloper: this.project.leadDeveloper,
+      projectScope: this.project.projectScope,
+      dueDate: this.project.dueDate,
     });
+  }
+
+  saveProject(): void {
+    if (this.projectForm.valid) {
+      if (this.projectForm.dirty) {
+        const p = { ...this.project, ...this.projectForm.value };
+        console.log(p);
+
+        if (p.id === null) {
+          this.apiService.createProject(p)
+            .subscribe(
+              () => this.onSaveComplete(),
+              (error: any) => this.errorMessage = <any>error
+            );
+        } else {
+          this.apiService.updateProject(p)
+            .subscribe(
+              () => this.onSaveComplete(),
+              (error: any) => this.errorMessage = <any>error
+            );
+        }
+      } else {
+        this.onSaveComplete();
+      }
+    } else {
+      this.errorMessage = 'Please correct the validation errors.';
+    }
+  }
+
+  onSaveComplete(): void {
+    // Reset the form to clear the flags
+    this.projectForm.reset();
+    this.router.navigate(['/projects']);
+    console.log('????');
   }
 
 }
