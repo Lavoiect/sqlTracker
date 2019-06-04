@@ -13,7 +13,7 @@ export class ApiService {
   constructor(private httpClient: HttpClient) { }
 
   getProjects(): Observable<Project[]> {
-    return this.httpClient.get<Project[]>(`${this.PHP_API_SERVER}/projectBackend/api/read.php`);
+    return this.httpClient.get<Project[]>('http://127.0.0.1:8887/projectBackend/api/read.php');
   }
 
   getProject(id: number) {

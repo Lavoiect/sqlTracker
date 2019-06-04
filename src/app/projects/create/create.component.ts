@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ApiService } from '../../api.service';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import {NgbDateAdapter, NgbDateStruct, NgbDateNativeAdapter} from '@ng-bootstrap/ng-bootstrap';
 
@@ -66,7 +66,7 @@ export class CreateComponent implements OnInit, OnDestroy {
     }
     this.project = project;
 
-    if (this.project.id === 0) {
+    if (this.project.projectName === null) {
       this.pageTitle = 'Add Project';
     } else {
       this.pageTitle = `Edit Project: ${this.project.projectName}`;
@@ -107,6 +107,8 @@ export class CreateComponent implements OnInit, OnDestroy {
       this.errorMessage = 'Please correct the validation errors.';
     }
   }
+
+
 
   onSaveComplete(): void {
     // Reset the form to clear the flags

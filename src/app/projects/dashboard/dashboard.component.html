@@ -21,7 +21,7 @@ filtered by: {{ _filterTerm }}
       <tr *ngFor="let project of filteredProjects">
         <th scope="row">{{ project.projectName }}</th>
         <td>{{ project.leadDeveloper}}</td>
-        <td>{{ project.projectScope }}</td>
+        <td><p *ngFor="let t of project.task">{{t.task}}</p></td>
         <td>{{ project.dueDate | date:'shortDate' }}</td>
         <td><button  class="btn btn-danger" (click)="deleteProject(project.id)">Delete</button>
           <button  class="btn btn-primary" [routerLink]="['/projects', project.id, 'details']" >View</button>

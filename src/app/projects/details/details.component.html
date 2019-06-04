@@ -1,4 +1,15 @@
 <h3>Project Details:</h3>
-{{ project?.id }}
+Project Name:
 {{ project?.projectName }}
+Task:
+Add
+Milestones:
 <button *ngIf="project" class="btn btn-primary" [routerLink]="['/projects', project.id, 'edit']">edit</button>
+
+<form (ngSubmit)="saveTask()" [formGroup]="taskForm">
+    <input type="hidden" formControlName="name" >
+  <input type="text" formControlName="task" placeholder="Task">
+  <button>ADD</button>
+</form>
+{{project?.projectName}}
+<br>Value: {{taskForm.value | json}}
