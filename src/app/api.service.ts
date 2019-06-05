@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Project } from '../app/project';
 import { Observable } from 'rxjs';
+import { Task } from './projects/task';
 
 
 @Injectable({
@@ -11,6 +12,14 @@ export class ApiService {
   PHP_API_SERVER = 'http://127.0.0.1:8887';
 
   constructor(private httpClient: HttpClient) { }
+
+  createTask(task: Task) {
+    console.log('create Task API');
+    return this.httpClient.post<Task>(`${this.PHP_API_SERVER}/projectBackend/api/createTask.php`, task);
+  }
+  getTasks(): Observable<Task[]> {
+    return this.httpClient.get<Task[]>('http://127.0.0.1:8887/projectBackend/api/readTask.php');
+  }
 
   getProjects(): Observable<Project[]> {
     return this.httpClient.get<Project[]>('http://127.0.0.1:8887/projectBackend/api/read.php');
@@ -30,4 +39,5 @@ export class ApiService {
   updateProject(project: Project) {
     return this.httpClient.put<Project>(`${this.PHP_API_SERVER}/projectBackend/api/update.php`, project);
   }
+
 }
