@@ -32,6 +32,9 @@ export class ApiService {
   deleteProject(id: number) {
     return this.httpClient.delete<Project>(`${this.PHP_API_SERVER}/projectBackend/api/delete.php/?id=${id}`);
   }
+  deleteTask(id: number) {
+    return this.httpClient.delete<Task>(`${this.PHP_API_SERVER}/projectBackend/api/deleteTask.php/?id=${id}`);
+  }
   createProject(project: Project) {
     return this.httpClient.post<Project>(`${this.PHP_API_SERVER}/projectBackend/api/create.php`, project);
   }

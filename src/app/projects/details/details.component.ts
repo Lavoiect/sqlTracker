@@ -17,9 +17,9 @@ import { Task } from '../task';
 export class DetailsComponent implements OnInit {
 
   private sub: Subscription;
-  readTasks:  Task[] = [];
+  readTasks:  Task;
   project;
-  tasks: Task;
+  tasks;
   errorMessage: string;
   constructor(private route: ActivatedRoute, private apiService: ApiService) {
   }
@@ -33,7 +33,6 @@ export class DetailsComponent implements OnInit {
 
   ngOnInit() {
 
-    this.fetchTasks();
 
     this.sub = this.route.paramMap.subscribe(
       params => {
@@ -43,7 +42,7 @@ export class DetailsComponent implements OnInit {
       }
     );
 
-
+    this.fetchTasks();
 
 }
 
@@ -57,44 +56,38 @@ getProject(id: number): void {
 displayProject(project: Project): void {
   this.project = project;
 }
-saveTask() {
-  this.taskForm.value.projectId = this.project.id;
-  if (this.taskForm.valid) {
-    if (this.taskForm.dirty) {
-      const t = { ...this.tasks, ...this.taskForm.value };
-      console.log(t);
 
-      if (t.projectId === this.project.id) {
-        this.apiService.createTask(t)
-          .subscribe(
+deleteTask(id) {
+  this.apiService.deleteTask(id).subscribe((tasks: Task) => {
+    this.fetchTasks();
+  });
+}
+
+saveTask(): void {
+  this.taskForm.value.projectId = this.project.id;
+      const t = { ...this.readTasks, ...this.taskForm.value};
+      console.log(t);
+        this.apiService.createTask(t).subscribe(
             () => this.onSaveComplete(),
-            (error: any) => this.errorMessage = <any>error
+            (tasks: Task) => {
+              this.onSaveComplete();
+            }
           );
-      } else {
-        this.apiService.updateProject(t)
-          .subscribe(
-            () => this.onSaveComplete(),
-            (error: any) => this.errorMessage = <any>error
-          );
-      }
-    } else {
-      this.onSaveComplete();
-    }
-  } else {
-    this.errorMessage = 'Please correct the validation errors.';
   }
-  }
+
+
+fetchTasks() {
+  this.apiService.getTasks().subscribe((tasks: Task[]) => {
+    this.tasks = tasks;
+    console.log(this.tasks);
+  });
+}
+
+
   onSaveComplete(): void {
     // Reset the form to clear the flags
     this.taskForm.reset();
     console.log('????');
+    this.fetchTasks();
   }
-
-  fetchTasks() {
-    this.apiService.getTasks().subscribe((readTasks: Task[]) => {
-      this.readTasks = readTasks;
-      console.log(this.tasks);
-    });
-  }
-
 }

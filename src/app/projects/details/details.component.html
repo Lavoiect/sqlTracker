@@ -7,14 +7,14 @@ Milestones:
 <button *ngIf="project" class="btn btn-primary" [routerLink]="['/projects', project.id, 'edit']">edit</button>
 <br>
 Task:
-<div *ngFor="let t of readTasks">
+<div *ngFor="let t of tasks">
   <p *ngIf="project?.id === t.projectId">{{t.task}}</p>
 </div>
 <form (ngSubmit)="saveTask()" [formGroup]="taskForm">
     <input type="hidden" formControlName="projectId" >
   <input type="text" formControlName="task" placeholder="Task">
   <input formControlName="taskDue" type="date"  placeholder="yyyy-mm-dd">
-  <button>ADD</button>
+  <button type="submit">ADD</button>
 </form>
 {{project?.projectName}}
 <br>Value: {{taskForm.value | json}}
