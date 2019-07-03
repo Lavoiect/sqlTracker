@@ -8,7 +8,7 @@ Milestones:
 <br>
 Task:
 <div *ngFor="let t of tasks">
-  <p *ngIf="project?.id === t.projectId">{{t.task}}</p>
+  <p *ngIf="project?.id === t.projectId" [class.completed]="t.complete">{{t.task}}</p>
 </div>
 <form (ngSubmit)="saveTask()" [formGroup]="taskForm">
     <input type="hidden" formControlName="projectId" >
