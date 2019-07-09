@@ -14,7 +14,8 @@ export class DashboardComponent implements OnInit {
     projects:  Project[] = [];
     _filterTerm: string;
     filteredProjects: Project[];
-
+itemsPerPage =  5;
+private popped = [];
   constructor(private apiService: ApiService) {
   }
 
@@ -34,9 +35,11 @@ export class DashboardComponent implements OnInit {
     return this.projects.filter((project: Project) =>
     project.projectName.toLocaleLowerCase().indexOf(filterBy) !== -1);
   }
+
+
   deleteProject(id) {
     this.apiService.deleteProject(id).subscribe((project: Project) => {
-      this.fetchProjects();
+      this.popped.push(this.projects.pop());
     });
   }
 

@@ -18,7 +18,7 @@ filtered by: {{ _filterTerm }}
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let project of filteredProjects">
+      <tr *ngFor="let project of filteredProjects | paginate: { itemsPerPage: itemsPerPage, currentPage: p }">
         <th scope="row">{{ project.projectName }}</th>
         <td>{{ project.leadDeveloper}}</td>
         <td>{{project.projectScope }}</td>
@@ -28,13 +28,24 @@ filtered by: {{ _filterTerm }}
         </td>
       </tr>
     </tbody>
+
     </table>
+<div class="paginate" *ngIf="filteredProjects?.length > 0" >
+  <label>Items per page: </label>
+  <select  [(ngModel)]="itemsPerPage">
+    <option value="5">5</option>
+    <option value="10">10</option>
+    <option value="15">15</option>
+  </select>
+  <pagination-controls  [maxSize]="4"  (pageChange)="p = $event"></pagination-controls>
+</div>
+
 
   </div>
 
 <div class="cardPanel" *ngIf="showCardView">
   <div class="row">
-    <div class="col-4" *ngFor="let project of filteredProjects">
+    <div class="col-4" *ngFor="let project of filteredProjects |filter:filterTerm| paginate: { itemsPerPage: itemsPerPage, currentPage: p }">
         <div class="card" >
             <div class="card-block">
               {{ project.leadDeveloper }}
@@ -46,9 +57,19 @@ filtered by: {{ _filterTerm }}
           </div>
     </div>
   </div>
+  <div class="paginate" *ngIf="filteredProjects?.length > 0" >
+    <label>Items per page: </label>
+    <select  [(ngModel)]="itemsPerPage">
+      <option value="5">5</option>
+      <option value="10">10</option>
+      <option value="15">15</option>
+    </select>
+    <pagination-controls  [maxSize]="4"  (pageChange)="p = $event"></pagination-controls>
+  </div>
+
 </div>
 
 <div *ngIf="filteredProjects?.length <= 0">
   No Projects
 </div>
-<p>project count:{{filteredProjects.length}}</p>
+<p>project count:{{filteredProjects?.length}}</p>

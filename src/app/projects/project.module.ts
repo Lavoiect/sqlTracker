@@ -7,6 +7,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { NgbModule, NgbDateAdapter, NgbDateNativeAdapter } from '@ng-bootstrap/ng-bootstrap';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 
 
@@ -25,7 +27,9 @@ import { NgbModule, NgbDateAdapter, NgbDateNativeAdapter } from '@ng-bootstrap/n
     FormsModule,
     CommonModule,
     RouterModule,
-    NgbModule
+    NgbModule,
+    NgxPaginationModule,
+    Ng2SearchPipeModule
 
   ],
   providers: [{provide: NgbDateAdapter, useClass: NgbDateNativeAdapter}],

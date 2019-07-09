@@ -1,5 +1,24 @@
 
-
 header {
   background: grey;
+  height: 70px;
+
+  .logo{
+    padding: 20px;
+  }
 }
+.row {
+
+  .col-2{
+    padding: 0;
+  }
+  nav{
+    background: red;
+    width: 100%;
+
+    ul{
+      list-style-type: none;
+    }
+  }
+}
+
