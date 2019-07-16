@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DetailsComponent } from 'src/app/projects/details/details.component';
-import { DashboardComponent } from 'src/app/projects/dashboard/dashboard.component';
+import { ProjectListComponent } from 'src/app/projects/projectList/projectList.component';
 import { CreateComponent } from 'src/app/projects/create/create.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
@@ -17,7 +17,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 @NgModule({
   declarations: [
     DetailsComponent,
-    DashboardComponent,
+    ProjectListComponent,
     CreateComponent,
 
 

@@ -113,7 +113,7 @@ export class CreateComponent implements OnInit, OnDestroy {
   onSaveComplete(): void {
     // Reset the form to clear the flags
     this.projectForm.reset();
-    this.router.navigate(['/projects']);
+    this.router.navigate(['home/projects']);
     console.log('????');
   }
 

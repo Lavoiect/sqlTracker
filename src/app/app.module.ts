@@ -8,6 +8,8 @@ import { AppComponent } from './app.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { HomeComponent } from './home/home.component';
 import { ProjectModule } from './projects/project.module';
+import { LoginComponent } from './login/login.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 @NgModule({
@@ -15,6 +17,8 @@ import { ProjectModule } from './projects/project.module';
     AppComponent,
     SidenavComponent,
     HomeComponent,
+    LoginComponent,
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,

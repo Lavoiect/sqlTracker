@@ -3,11 +3,11 @@ import { ApiService } from '../../api.service';
 import { Project } from '../../project';
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+  selector: 'app-projectlist',
+  templateUrl: './projectList.component.html',
+  styleUrls: ['./projectList.component.scss']
 })
-export class DashboardComponent implements OnInit {
+export class ProjectListComponent implements OnInit {
 
     showTableView = true;
     showCardView = false;
