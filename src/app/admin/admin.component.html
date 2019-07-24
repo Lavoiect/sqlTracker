@@ -1,21 +1,9 @@
-<form (submit)="addUser()" [formGroup]="addUserForm">
+<form (submit)="sendEmail()" [formGroup]="registerUserForm">
   <div class="form-group row">
     <label  class="col-2 col-form-label">User Name</label>
     <div class="col-10">
       <input class="form-control" type="text" value="admin" formControlName="username">
     </div>
   </div>
-  <div class="form-group row">
-      <label for="example-password-input" class="col-2 col-form-label">Password</label>
-      <div class="col-10">
-        <input class="form-control" type="password" value="" formControlName="password">
-      </div>
-    </div>
-    <input type="submit" class="btn btn-primary" value="Log-in">
+    <input type="submit" class="btn btn-primary" value="Send Invite">
 </form>
-
-<h4>Users:</h4>
-
-<div *ngFor="let u of user">
-  <p>{{u.username}}</p> <button  class="btn btn-danger" (click)="deleteUser(u.userid)">Delete</button>
-</div>

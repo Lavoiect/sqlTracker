@@ -15,6 +15,9 @@ export class UserService {
   createUser(user: User) {
     return this.http.post<User>('http://127.0.0.1:8887/projectBackend/api/user/createUser.php', user);
   }
+  sendToUser(user: User) {
+    return this.http.post<User>('http://127.0.0.1:8887/projectBackend/api/user/registration.php', user);
+  }
 
   getUsers(): Observable<User[]> {
     return this.http.get<User[]>('http://127.0.0.1:8887/projectBackend/api/user/getUsers.php');

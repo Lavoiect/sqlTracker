@@ -21,12 +21,14 @@ import { AdminComponent } from '../admin/admin.component';
 
 
 
+
 @NgModule({
   declarations: [
     DetailsComponent,
     ProjectListComponent,
     CreateComponent,
-    AdminComponent
+    AdminComponent,
+
 
 
   ],

@@ -14,19 +14,19 @@ export class AdminComponent implements OnInit {
   private popped = [];
   constructor(private userService: UserService) { }
 
- addUserForm = new FormGroup({
+ registerUserForm = new FormGroup({
     username: new FormControl(''),
     password: new FormControl(''),
   });
 
   ngOnInit() {
-    this.fetchUsers();
+
   }
 
-  addUser() {
-        const u = { ...this.readUsers, ...this.addUserForm.value};
-        console.log(u);
-          this.userService.createUser(u).subscribe(
+  sendEmail() {
+        const u = {...this.registerUserForm.value};
+        console.log();
+          this.userService.sendToUser(u).subscribe(
               () => this.onSaveComplete(),
               (user: User) => {
                 this.onSaveComplete();
@@ -35,21 +35,8 @@ export class AdminComponent implements OnInit {
   }
 
   onSaveComplete(): void {
-console.log('user added');
-    this.fetchUsers();
-  }
+console.log('email Sent to new User');
 
-  fetchUsers() {
-    this.userService.getUsers().subscribe((user: User[]) => {
-      this.user = user;
-      console.log(this.user);
-    });
-  }
-
-  deleteUser(userid) {
-    this.userService.deleteUser(userid).subscribe((user: User) => {
-      this.popped.push(this.user.pop());
-    });
   }
 
 }

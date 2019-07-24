@@ -1,10 +1,11 @@
 <div class="card">
   <h4 class=card-title>Log In</h4>
-  <form (submit)="logInUser($event)">
+  <form  (submit)="logInUser($event)">
+    <p class="errorText" *ngIf="showError">You entered the wrong creditails please try again.</p>
     <div class="form-group row">
       <label  class="col-2 col-form-label">User Name</label>
       <div class="col-10">
-        <input class="form-control" type="text" value="admin" id="username">
+        <input class="form-control" type="text" value="" id="username">
       </div>
     </div>
     <div class="form-group row">

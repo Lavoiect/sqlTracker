@@ -11,6 +11,8 @@ import { HomeComponent } from './home/home.component';
 import { ProjectModule } from './projects/project.module';
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { SignUpComponent } from './sign-up/sign-up.component';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 
 
@@ -22,12 +24,15 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     HomeComponent,
     LoginComponent,
     DashboardComponent,
+    SignUpComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     ProjectModule,
     AppRoutingModule,
+    ReactiveFormsModule,
+    FormsModule,
 
 
   ],
