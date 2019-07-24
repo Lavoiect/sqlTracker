@@ -6,15 +6,19 @@ import { CreateComponent } from './projects/create/create.component';
 import { DetailsComponent } from './projects/details/details.component';
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { AdminComponent } from './admin/admin.component';
+import { AuthGuard } from './auth.guard';
+
 
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
-  { path: 'home', component: HomeComponent,
+  { path: 'home', component: HomeComponent, canActivate: [AuthGuard],
       children: [
-        { path: 'dash', component: DashboardComponent },
+        { path: 'dash', component: DashboardComponent},
         { path: 'projects', component: ProjectListComponent },
         { path: 'create', component: CreateComponent },
+        { path: 'admin', component: AdminComponent },
         { path: 'projects/:id', component: DetailsComponent },
         { path: 'projects/:id/details', component: DetailsComponent },
         { path: 'projects/:id/details/edit', component: CreateComponent },

@@ -1,16 +1,18 @@
 <div class="card">
   <h4 class=card-title>Log In</h4>
-  <div class="form-group row">
-      <label for="example-email-input" class="col-2 col-form-label">Email</label>
+  <form (submit)="logInUser($event)">
+    <div class="form-group row">
+      <label  class="col-2 col-form-label">User Name</label>
       <div class="col-10">
-        <input class="form-control" type="email" value="bootstrap@example.com" id="example-email-input">
+        <input class="form-control" type="text" value="admin" id="username">
       </div>
     </div>
     <div class="form-group row">
         <label for="example-password-input" class="col-2 col-form-label">Password</label>
         <div class="col-10">
-          <input class="form-control" type="password" value="" id="example-password-input">
+          <input class="form-control" type="password" value="" id="password">
         </div>
       </div>
-  <button class="btn btn-primary" (click)="login()" >Log-in</button>
+      <input type="submit" class="btn btn-primary" value="Log-in">
+  </form>
 </div>

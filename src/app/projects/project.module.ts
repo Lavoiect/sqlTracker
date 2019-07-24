@@ -9,6 +9,13 @@ import { RouterModule } from '@angular/router';
 import { NgbModule, NgbDateAdapter, NgbDateNativeAdapter } from '@ng-bootstrap/ng-bootstrap';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { AuthGuard } from '../auth.guard';
+import { UserService } from '../user.service';
+import { AuthService } from '../auth.service';
+import { AdminComponent } from '../admin/admin.component';
+
+
+
 
 
 
@@ -19,6 +26,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     DetailsComponent,
     ProjectListComponent,
     CreateComponent,
+    AdminComponent
 
 
   ],
@@ -32,7 +40,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     Ng2SearchPipeModule
 
   ],
-  providers: [{provide: NgbDateAdapter, useClass: NgbDateNativeAdapter}],
+  providers: [{provide: NgbDateAdapter, useClass: NgbDateNativeAdapter}, AuthGuard, AuthService, UserService],
   exports: [CreateComponent],
   bootstrap: [CreateComponent]
 })
