@@ -9,11 +9,13 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { AdminComponent } from './admin/admin.component';
 import { AuthGuard } from './auth.guard';
 import { SignUpComponent } from './sign-up/sign-up.component';
+import { ChangepasswordComponent } from './changepassword/changepassword.component';
 
 
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
+  {path: 'change', component: ChangepasswordComponent},
   {path: 'signup', component: SignUpComponent},
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard],
       children: [

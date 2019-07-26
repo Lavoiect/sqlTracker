@@ -30,4 +30,14 @@ get isLoggedIn() {
       password
     });
   }
+
+  resetPassword(forgot) {
+    return this.http.post<Mydata>('http://127.0.0.1:8887/projectBackend/api/user/resetPassword.php', {
+    forgot
+    });
+  }
+
+  logOutUser() {
+    return this.http.get('http://127.0.0.1:8887/projectBackend/api/project/logout.php');
+  }
 }

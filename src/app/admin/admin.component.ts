@@ -20,12 +20,12 @@ export class AdminComponent implements OnInit {
   });
 
   ngOnInit() {
-
+    this.fetchUsers();
   }
 
   sendEmail() {
-        const u = {...this.registerUserForm.value};
-        console.log();
+        const u = { ...this.readUsers, ...this.registerUserForm.value};
+        console.log(u);
           this.userService.sendToUser(u).subscribe(
               () => this.onSaveComplete(),
               (user: User) => {
@@ -35,8 +35,21 @@ export class AdminComponent implements OnInit {
   }
 
   onSaveComplete(): void {
-console.log('email Sent to new User');
+console.log('user added');
+    this.fetchUsers();
+  }
 
+  fetchUsers() {
+    this.userService.getUsers().subscribe((user: User[]) => {
+      this.user = user;
+      console.log(this.user);
+    });
+  }
+
+  deleteUser(userid) {
+    this.userService.deleteUser(userid).subscribe((user: User) => {
+      this.popped.push(this.user.pop());
+    });
   }
 
 }

@@ -16,4 +16,10 @@
       </div>
       <input type="submit" class="btn btn-primary" value="Log-in">
   </form>
+
+  <p>forgot password?</p>
+  <form (submit)="resetPassword($event)">
+    <input class="form-control" type="email" value="" id="forgot">
+    <input type="submit" class="btn btn-primary" value="Reset Password">
+  </form>
 </div>

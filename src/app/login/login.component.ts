@@ -38,6 +38,20 @@ logInUser(event) {
 
 }
 
+resetPassword(event) {
+  event.preventDefault();
+  const target = event.target;
+  const forgot = target.querySelector('#forgot').value;
+  console.log(forgot);
 
+  this.auth.resetPassword(forgot).subscribe(data => {
+    if (data.success) {
+      this.router.navigate(['signup']);
+      this.auth.setLoggedIn(true);
+    } else {
+
+    }
+  });
+}
 
 }
