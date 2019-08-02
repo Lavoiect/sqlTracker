@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { PasswordValidation } from './passwordValidation';
+import { User } from '../user';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-changepassword',
@@ -8,11 +10,12 @@ import { PasswordValidation } from './passwordValidation';
   styleUrls: ['./changepassword.component.scss']
 })
 export class ChangepasswordComponent implements OnInit {
-
+user;
   form: FormGroup;
 
-  constructor(fb: FormBuilder) {
+  constructor(fb: FormBuilder, private auth: AuthService) {
     this.form = fb.group({
+        user: ['', Validators.required],
         password: ['', Validators.required],
         confirmPassword: ['', Validators.required]
       }, {
@@ -21,8 +24,19 @@ export class ChangepasswordComponent implements OnInit {
    }
 
   ngOnInit() {
+
   }
   onSubmit() {
-    console.log(this.form);
-  }
+    const u = { ...this.form.value};
+      console.log(u);
+        this.auth.changePassword(u).subscribe(
+            () => this.onSaveComplete(),
+            (user: User) => {
+              this.onSaveComplete();
+            }
+          );
+}
+onSaveComplete(): void {
+  console.log('Password reset');
+    }
 }

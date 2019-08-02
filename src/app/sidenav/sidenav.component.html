@@ -1,15 +1,17 @@
 <header>
-  <div class="logo">Project Tracker <a (click)="logOut()">Log-out</a></div>
+  <div class="logo">Project Tracker<a (click)="logOut()">Log-out</a></div>
+  <a [routerLink]="['intake']">Intake Form</a>
 
 </header>
 <div class="row">
   <div class="col-2">
       <nav>
+
       <ul>
+         <li *ngIf="isAdmin === 'admin'"><a [routerLink]="['admin']" routerLinkActive="router-link-active">Admin</a></li>
         <li><a [routerLink]="['dash']" routerLinkActive="router-link-active" >Home</a></li>
         <li><a [routerLink]="['projects']" routerLinkActive="router-link-active" >Projects</a></li>
         <li><a [routerLink]="['projects/0/details/edit']" routerLinkActive="router-link-active" >Create</a></li>
-        <li><a [routerLink]="['admin']" routerLinkActive="router-link-active" >Admin</a></li>
       </ul>
     </nav>
   </div>

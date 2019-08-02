@@ -7,4 +7,29 @@
   </div>
     <input type="submit" class="btn btn-primary" value="Send Invite">
 </form>
-<p *ngFor="let u of user">{{ u.username }}</p>
+<div *ngFor="let u of user">
+  <div class="card">
+      {{u.username}}
+    <p>User Profile {{u.userid}}</p>
+    <p>First Name: {{u.first}}</p>
+    <p>Last Name: {{u.last}}</p>
+    <form [formGroup]="updateForm" (ngSubmit)="updateUser(u.username)">
+        <div class="form-group">
+            <input class="form-control" type="hidden" formControlName="user" value="{{u.username}}">
+          </div>
+      <div class="form-group">
+          <label>role</label>
+          <select id="role"
+          class="form-control"
+          formControlName="role"
+          [formGroup]="updateForm">
+            <option value="admin">Admin</option>
+            <option value="user">User</option>
+          </select>
+        </div>
+      <input type="submit" class="btn btn-primary" value="Update">
+  </form>
+
+      <p>Email/Username: {{u.username}}</p> <button  class="btn btn-danger" (click)="deleteUser(u.userid)">Delete</button>
+  </div>
+</div>

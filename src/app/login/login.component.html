@@ -1,25 +1,72 @@
-<div class="card">
-  <h4 class=card-title>Log In</h4>
-  <form  (submit)="logInUser($event)">
-    <p class="errorText" *ngIf="showError">You entered the wrong creditails please try again.</p>
-    <div class="form-group row">
-      <label  class="col-2 col-form-label">User Name</label>
-      <div class="col-10">
-        <input class="form-control" type="text" value="" id="username">
-      </div>
-    </div>
-    <div class="form-group row">
-        <label for="example-password-input" class="col-2 col-form-label">Password</label>
-        <div class="col-10">
-          <input class="form-control" type="password" value="" id="password">
-        </div>
-      </div>
-      <input type="submit" class="btn btn-primary" value="Log-in">
-  </form>
+<div class="my-container">
 
-  <p>forgot password?</p>
-  <form (submit)="resetPassword($event)">
-    <input class="form-control" type="email" value="" id="forgot">
-    <input type="submit" class="btn btn-primary" value="Reset Password">
-  </form>
+    <div class="card">
+        <img src="../../assets/logo.png">
+        <h1>Field Operations: Learning Services</h1>
+        <h3>Project Tracker</h3>
+        <form  (submit)="logInUser($event)">
+          <p class="errorText" *ngIf="showError">You entered the wrong creditails please try again.</p>
+          <div class="form-group row noLeft">
+            <div class="col-8">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text"><i class="far fa-envelope"></i></div>
+                    </div>
+                    <input type="email" class="form-control" id="username" placeholder="Email">
+                  </div>
+                </div>
+            </div>
+
+          <div class="form-group row noLeft">
+            <div class="col-8">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text"><i class="fas fa-key"></i></div>
+                    </div>
+                    <input type="password" class="form-control" id="password" placeholder="Password">
+                </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-8">
+                <input type="submit" class="btn btn-primary" value="Log-in">
+                <button class="btn btn-link" (click)="showForgot()">Forgot Password?</button>
+            </div>
+          </div>
+        </form>
+
+
+
+      <div *ngIf="showForgotLink">
+
+
+
+          <form  (submit)="resetPassword($event)">
+              <div class="form-group row noLeft">
+              <div class="col-8">
+                  <div class="input-group">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text"><i class="far fa-envelope"></i></div>
+                      </div>
+                      <input type="email" class="form-control" id="forgot" placeholder="Email">
+                    </div>
+                  </div>
+
+              </div>
+              <div class="form-group row noLeft">
+                  <div class="col-8">
+                      <div class="input-group">
+                          <input type="submit" class="btn btn-primary" value="Reset Password">
+                      </div>
+
+                  </div>
+              </div>
+
+          </form>
+
 </div>
+
+
+</div>
+
+

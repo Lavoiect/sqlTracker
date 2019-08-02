@@ -2,14 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { UserService } from '../user.service';
 import { User } from '../user';
+import { Updaterole } from '../userRole';
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.scss']
 })
 export class AdminComponent implements OnInit {
-
   user;
+  userRole;
   readUsers: User;
   private popped = [];
   constructor(private userService: UserService) { }
@@ -17,6 +18,10 @@ export class AdminComponent implements OnInit {
  registerUserForm = new FormGroup({
     username: new FormControl(''),
     password: new FormControl(''),
+  });
+  updateForm = new FormGroup({
+    user: new FormControl(''),
+    role: new FormControl(''),
   });
 
   ngOnInit() {
@@ -52,4 +57,20 @@ console.log('user added');
     });
   }
 
+
+onSaveCompleteI(): void {
+  console.log('Role Changed');
+    }
+
+    updateUser(username) {
+      this.updateForm.value.user = username;
+      const u = { ...this.updateForm.value};
+      console.log(u);
+        this.userService.updateUser(u).subscribe(
+            () => this.onSaveCompleteI(),
+            (user: User) => {
+              this.onSaveCompleteI();
+            }
+          );
+    }
 }

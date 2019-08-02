@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { UserService } from '../user.service';
 import { User } from '../user';
 import { Router } from '@angular/router';
@@ -15,8 +15,10 @@ export class SignUpComponent implements OnInit {
   constructor(private userService: UserService, private router: Router) { }
 
  addUserForm = new FormGroup({
-    username: new FormControl(''),
-    password: new FormControl(''),
+    username: new FormControl('', Validators.required),
+    first: new FormControl('', Validators.required),
+    last: new FormControl('', Validators.required),
+    password: new FormControl('', Validators.required),
   });
 
   ngOnInit() {

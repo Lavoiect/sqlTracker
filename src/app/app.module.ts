@@ -14,6 +14,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { ChangepasswordComponent } from './changepassword/changepassword.component';
+import { IntakeComponent } from './intake/intake.component';
 
 
 
@@ -27,6 +28,7 @@ import { ChangepasswordComponent } from './changepassword/changepassword.compone
     DashboardComponent,
     SignUpComponent,
     ChangepasswordComponent,
+    IntakeComponent,
 
   ],
   imports: [

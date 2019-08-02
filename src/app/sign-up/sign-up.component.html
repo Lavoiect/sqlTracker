@@ -1,15 +1,76 @@
-<form (submit)="addUser()" [formGroup]="addUserForm">
-  <div class="form-group row">
-    <label  class="col-2 col-form-label">User Name</label>
-    <div class="col-10">
-      <input class="form-control" type="text" formControlName="username">
-    </div>
-  </div>
-  <div class="form-group row">
-    <label  class="col-2 col-form-label">Password</label>
-    <div class="col-10">
-      <input class="form-control" type="password"  formControlName="password">
-    </div>
-  </div>
-    <input type="submit" class="btn btn-primary" value="Register">
-</form>
+<div class="my-container">
+    <div class="card">
+
+        <h1>Registration Form</h1>
+          <form (submit)="addUser()" [formGroup]="addUserForm">
+
+
+              <div class="form-group row noLeft">
+                  <div class="col-8">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><i class="fas fa-user"></i></div>
+                          </div>
+                        <input class="form-control" type="text" formControlName="first" placeholder="First Name">
+                    </div>
+                  </div>
+                </div>
+
+
+                <div class="form-group row noLeft">
+                    <div class="col-8">
+                      <div class="input-group">
+                          <div class="input-group-prepend">
+                              <div class="input-group-text"><i class="fas fa-user"></i></div>
+                            </div>
+                          <input class="form-control" type="text" formControlName="last" placeholder="Last Name">
+                      </div>
+                    </div>
+                  </div>
+
+
+              <div class="form-group row noLeft">
+                <div class="col-8">
+                  <div class="input-group">
+                      <div class="input-group-prepend">
+                          <div class="input-group-text"><i class="far fa-envelope"></i></div>
+                        </div>
+                      <input class="form-control" type="text" formControlName="username" placeholder="Email">
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="form-group row noLeft">
+                  <div class="col-8">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><i class="fas fa-key"></i></div>
+                        </div>
+                        <input class="form-control" type="password"  formControlName="password" placeholder="Password">
+                    </div>
+                  </div>
+              </div>
+              <div class="form-group row noLeft">
+                  <div class="col-8">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><i class="fas fa-key"></i></div>
+                        </div>
+                        <input class="form-control" type="password"  formControlName="password" placeholder="Confirm Password">
+                    </div>
+                  </div>
+              </div>
+              <div class="form-group row noLeft">
+                  <div class="col-8">
+                    <div class="input-group">
+                        <button type="submit" class="btn btn-primary" [disabled]="!addUserForm.valid">Register</button>
+                    </div>
+                  </div>
+              </div>
+
+            </form>
+      </div>
+</div>
+
+

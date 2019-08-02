@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { User } from './user';
 import { Observable } from 'rxjs';
+import { Updaterole } from './userRole';
 
 
 @Injectable({
@@ -26,4 +27,10 @@ export class UserService {
   deleteUser(userid: number) {
     return this.http.delete<User>('http://127.0.0.1:8887/projectBackend/api/user/deleteUser.php/?userid=' + userid);
   }
+
+
+  updateUser(user: Updaterole) {
+    return this.http.post<Updaterole>('http://127.0.0.1:8887/projectBackend/api/user/updateRole.php', user);
+  }
+
 }

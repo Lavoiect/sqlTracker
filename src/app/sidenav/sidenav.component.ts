@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
+import { UserService } from '../user.service';
+import { User } from '../user';
 
 @Component({
   selector: 'app-sidenav',
@@ -9,9 +11,17 @@ import { Router } from '@angular/router';
 })
 export class SidenavComponent implements OnInit {
 
-  constructor(private authService: AuthService, private router: Router) { }
+user;
+
+isAdmin = 'user';
+
+  constructor(private authService: AuthService, private router: Router, private userService: UserService) { }
+
+
 
   ngOnInit() {
+    this.isAdmin = this.authService.isAdmin;
+    console.log(this.isAdmin);
   }
 logOut() {
   this.authService.logOutUser();
@@ -19,4 +29,5 @@ logOut() {
   console.log('Logging out');
 
 }
+
 }

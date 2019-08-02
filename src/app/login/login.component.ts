@@ -11,6 +11,7 @@ import { formArrayNameProvider } from '@angular/forms/src/directives/reactive_di
 export class LoginComponent implements OnInit {
 
 showError = false;
+showForgotLink = false;
 
   constructor(private router: Router, private auth: AuthService) { }
 
@@ -26,9 +27,16 @@ logInUser(event) {
 
 
   this.auth.getUserDetails(username, password).subscribe(data => {
-    if (data.success) {
+    if (data.success && data.isAdmin === 'admin') {
       this.router.navigate(['home/dash']);
       this.auth.setLoggedIn(true);
+      this.auth.isAdmin = 'admin';
+      console.log(data.isAdmin);
+  } else if (data.success) {
+      this.router.navigate(['home/dash']);
+      this.auth.setLoggedIn(true);
+      this.auth.isAdmin = 'user';
+      console.log(data.isAdmin);
     } else {
       this.showError = true;
       username = target.querySelector('#username').value = '';
@@ -52,6 +60,9 @@ resetPassword(event) {
 
     }
   });
+}
+showForgot() {
+  this.showForgotLink = !this.showForgotLink;
 }
 
 }
